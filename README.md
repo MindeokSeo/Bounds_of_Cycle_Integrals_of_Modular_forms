@@ -1,5 +1,3 @@
-# Bounds_of_Cycle_Integrals_of_Modular_forms
-Bounds of Cycle Integrals of Modular Forms (UW-Madison MXM Lab, Spring 2026)
 # Bounds of Cycle Integrals of Modular Forms
 
 This repository contains computation scripts, numerical experiments, and theoretical frameworks for analyzing cycle integrals of modular forms evaluated at real quadratic irrationalities. 
