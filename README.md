@@ -37,11 +37,14 @@ Can Kaneko's lower bound be generalized to other weakly holomorphic modular form
 
 ## 🛠 Project Structure
 ```text
-.
+bounds-of-cycle-integrals/
+│
 ├── src/
 │   ├── continued_fractions.py  # Matrix representation (T^a V^b) and sequence generators
 │   └── cycle_integrals.py      # Core SageMath integration algorithm along u=e^{it}
+│
 ├── notebooks/
 │   └── experimental_data.ipynb # Notebook executing experiments across ~15,000 matrices
+│
 ├── requirements.txt
 └── README.md
