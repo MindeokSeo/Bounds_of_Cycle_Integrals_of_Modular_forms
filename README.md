@@ -35,11 +35,10 @@ Can Kaneko's lower bound be generalized to other weakly holomorphic modular form
      - $\overline{[4,2]} \implies \approx 5.49$
      - $\overline{[100,1]} \implies \approx -19.94$
 
----
-
 ## 🛠 Project Structure
-
+---
 ```text
+.
 ├── src/
 │   ├── continued_fractions.py  # Matrix representation (T^a V^b) and sequence generators
 │   └── cycle_integrals.py      # Core SageMath integration algorithm along u=e^{it}
