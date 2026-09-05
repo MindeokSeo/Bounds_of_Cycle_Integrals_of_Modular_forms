@@ -36,7 +36,6 @@ Can Kaneko's lower bound be generalized to other weakly holomorphic modular form
      - $\overline{[100,1]} \implies \approx -19.94$
 
 ## 🛠 Project Structure
----
 ```text
 .
 ├── src/
