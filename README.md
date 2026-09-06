@@ -2,7 +2,7 @@
 
 This repository contains computation scripts, numerical experiments, and theoretical frameworks for analyzing cycle integrals of modular forms evaluated at real quadratic irrationalities. 
 
-This project was conducted as part of the **[UW–Madison Experimental Mathematics Lab (MXM Lab) - Spring 2026](https://mxm.math.wisc.edu/spring-2026/)** under the supervision of Prof. Yingkun Li and graduate student mentor Yiwen Bai.
+This project was conducted as part of the **[UW–Madison Experimental Mathematics Lab (MXM Lab) - Spring 2026]([https://mxm.math.wisc.edu/past-semesters/spring-2026/#bounds-of-cycle-integrals-of-modular-forms])** under the supervision of Prof. Yingkun Li and graduate student mentor Yiwen Bai.
 
 ## 📌 Background & Motivation
 
