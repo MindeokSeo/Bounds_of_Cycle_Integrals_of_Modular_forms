@@ -38,9 +38,9 @@ Bounds_of_Cycle_Integrals_of_Modular_forms/
 │
 ├── data/
 │   └── src/
-│       ├── Integration of the j-function.sage   # code used to integrate the j-function
-│       ├── data_E_4^2 over delta.csv            # E_4^2/Δ values
-│       └── data_E_4^2 over delta.xlsx           # same data, spreadsheet form
+│   │   ├── Integration of the j-function.sage   # code used to integrate the j-function
+│   ├── data_E_4^2 over delta.csv            # E_4^2/Δ values
+│   └── data_E_4^2 over delta.xlsx           # same data, spreadsheet form
 │
 ├── docs/
 │   ├── references/                              # papers and reference materials for the project
