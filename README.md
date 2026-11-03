@@ -25,7 +25,7 @@ Can Kaneko's lower bound be generalized to other weakly holomorphic modular form
    - Other values yield both positive and negative results (e.g., $\overline{[1,2]} \mapsto -26.26$, $\overline{[4,1]} \mapsto 34.72$).
    - **Conclusion:** No global minimum or maximum exists for weight $-2$.
 
-2. **Weight $0$ ($f = \frac{E_4^2}{\Delta}$):**
+2. **Weight $-4$ ($f = \frac{E_4^2}{\Delta}$):**
    - Testing across thousands of hyperbolic matrices shows that the golden ratio $\phi$ acts as an **upper bound** rather than a lower bound:
      - $\phi = \overline{[1]} \implies \approx 99.93$
      - $\overline{[1,2]} \implies \approx 62.47$
