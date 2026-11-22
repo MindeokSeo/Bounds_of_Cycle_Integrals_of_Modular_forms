@@ -118,8 +118,8 @@ $$g(t) = e^{-2it}\,\frac{E_4(e^{it})^2}{\Delta(e^{it})}.$$
 | $D_{\phi,w}^n(\pi-t) = D_{\phi,w}^n(t)$ | lemma | ✅ by construction of $S_w^n$ |
 | $g\le 0$ on $I$ | sign / direction of the bound | ⚠️ numerical evidence only |
 | $g$ nonincreasing on $J$ | lemma | ⚠️ reduced to inequality $(\ast)$, which is unproven |
-| $D_{\phi,w}^2$ nonincreasing on $J$ | lemma | ❓ not examined in the report |
-| $\int_I D_{\phi,w}^2\,dt = 0$ | lemma | ❌ false in general for $n\ne 0$ |
+| $D_{\phi,w}^2$ nonincreasing on $J$ | lemma | not written up in the report (expected to be routine) |
+| $\int_I D_{\phi,w}^2\,dt = 0$ | lemma | false in general for $n\ne 0$ |
 
 ### Open questions
 
