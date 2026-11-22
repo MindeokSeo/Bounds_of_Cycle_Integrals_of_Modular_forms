@@ -89,12 +89,11 @@ So the conjecture follows if this integral is $\ge 0$ for **every** real quadrat
 
 ### Step 3 — A comparison lemma
 
-> **Lemma (Chebyshev-type).** Let $g, D: I\to\mathbb{R}$ be continuous with $g(\pi-t) = g(t)$ and $D(\pi-t) = D(t)$. If $g$ is nondecreasing and $D$ is nonincreasing on $J$, and $\int_I D\,dt = 0$, then $\int_I g\,D\,dt \le 0$.
+The classical Chebyshev-type argument needs the mean-zero hypothesis $\int_I D\,dt = 0$. This holds for $n = 0$ (because $val_1(w) = 1$ for every $w$) but is not available for $n\ne 0$ (final report, Sec. 5.2), so the original lemma cannot be applied to $D_{\phi,w}^2$ directly. For our case the poster uses the following variant instead:
 
-For our weight-$(-4)$ form, $g\le 0$ is *nonincreasing* on $J$ (see Step 4), so $-g$ is nonnegative and nondecreasing on $J$; applying the lemma to $-g$ gives $\int_I g\,D\,dt \ge 0$, which is the direction we need. (On the poster this is described as "slightly changing the lemma".)
+> **Variant (final poster).** If $g$ and $D$ are both nonpositive and decreasing on $J = [\frac{\pi}{3},\frac{\pi}{2}]$ (and symmetric about $\frac{\pi}{2}$), then $\int_I g\,D\,dt \ge 0$.
 
-**Where the lemma breaks.** For $n = 0$ and $f = 1$ we have $val_1(w) = 1$ for all $w$, hence $\int_I S_w^0\,dt = 1$ and $\int_I D_{\phi,w}^0\,dt = 0$, which is exactly the mean-zero hypothesis. For $n\ne 0$ there is no such identity, and $\int_I D_{\phi,w}^n\,dt = 0$ **does not hold in general**. So the lemma cannot be applied to $D_{\phi,w}^2$ as it stands, and a variant is needed.
-
+This variant does not use the mean-zero hypothesis. The final report states only the original lemma (Lemma 5.1) and lists the replacement condition as an open question (Question 2), so the variant above should be read as the poster's proposed replacement.
 ### Step 4 — The function $g$ for $f = E_4^2/\Delta$
 
 For $n = 2$,
@@ -112,14 +111,15 @@ $$g(t) = e^{-2it}\,\frac{E_4(e^{it})^2}{\Delta(e^{it})}.$$
 
 ### Where things stand
 
-| Ingredient | Needed for | Status |
-|---|---|---|
-| $g$ real on $I$, $g(\pi-t) = g(t)$ | symmetrization, lemma | ✅ shown in the report ($n$ even, real coefficients) |
-| $D_{\phi,w}^n(\pi-t) = D_{\phi,w}^n(t)$ | lemma | ✅ by construction of $S_w^n$ |
-| $g\le 0$ on $I$ | sign / direction of the bound | ⚠️ numerical evidence only |
-| $g$ nonincreasing on $J$ | lemma | ⚠️ reduced to inequality $(\ast)$, which is unproven |
-| $D_{\phi,w}^2$ nonincreasing on $J$ | lemma | not written up in the report (expected to be routine) |
-| $\int_I D_{\phi,w}^2\,dt = 0$ | lemma | false in general for $n\ne 0$ |
+The reduction in Step 2 is exact. Applying the poster's variant to $g$ and $D_{\phi,w}^2$ requires the following:
+
+| Ingredient | Status |
+|---|---|
+| $g$ real on $I$ and $g(\pi-t) = g(t)$ | shown in the report ($n$ even, real coefficients) |
+| $D_{\phi,w}^2(\pi-t) = D_{\phi,w}^2(t)$ | by construction of $S_w^n$ |
+| $g\le 0$ on $I$ | numerical evidence only (Figure 1) |
+| $g$ nonincreasing on $J$ | reduced to inequality $(\ast)$, which is unproven |
+| $D_{\phi,w}^2$ nonpositive and nonincreasing on $J$ | not written up in the report |
 
 ### Open questions
 
