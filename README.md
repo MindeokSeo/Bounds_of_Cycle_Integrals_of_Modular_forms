@@ -33,97 +33,100 @@ Can Kaneko's lower bound be generalized to other weakly holomorphic modular form
      - $\overline{[100,1]} \implies \approx -19.94$
 
 
-## 🔍 Analytical Approach Toward the Conjecture
+## 🧩 Attempted Proof of the Weight $-4$ Conjecture
 
-Beyond numerical experiments, we explored an analytical approach to proving the conjectured upper bound for the weight $-4$ form
+> **Status: not proven.** This section records the proof strategy we pursued (Section 5 of [`docs/final_report.pdf`](docs/final_report.pdf); the *A Useful Lemma* and *Extending the Lemma* panels of [`docs/final_poster.pdf`](docs/final_poster.pdf)), which ingredients we managed to establish, and exactly where the argument gets stuck. The project provides numerical evidence and an analytical *reduction* of the conjecture, but it does not establish the bound.
 
-$$
-f(\tau)=\frac{E_4(\tau)^2}{\Delta(\tau)}.
-$$
+### The conjecture
 
-The main idea was to rewrite the difference between two cycle values as an integral of real-valued functions and then investigate conditions under which this integral is nonnegative.
+> **Conjecture 4.1.** For $f = E_4^2/\Delta$ (weight $-4$, so $n = 2$) and every real quadratic irrational $w$,
+> $$\mathrm{Re}(val_f(w)) \le \mathrm{Re}(val_f(\phi)) = 99.92938911748521\ldots$$
 
-### 1. Reducing the Conjecture to an Integral Inequality
+**Normalization.** All numerical values use $\Delta(\tau) = \frac{E_4^3 - E_6^2}{1728} = q\prod_{m\ge 1}(1-q^m)^{24}$, $q = e^{2\pi i \tau}$, i.e. *without* a $(2\pi)^{12}$ factor, and $E_{2k}(\tau) = \frac{1}{2\zeta(2k)}\sum_{(m,n)\ne(0,0)} (m+n\tau)^{-2k}$.
 
-For a modular form $f$ of weight $-2n$ with even $n$ and real Fourier coefficients, define
+### Strategy at a glance
 
-$$
-g_f(t)=e^{-nit}f(e^{it}),
-\qquad
-t\in I=\left[\frac{\pi}{3},\frac{2\pi}{3}\right].
-$$
+1. Rewrite $val_f(w)$ as an integral over the arc $e^{it}$, $\frac{\pi}{3}\le t\le\frac{2\pi}{3}$, against an explicit finite sum built from the continued fraction of $w$.
+2. For even $n$, split the integrand into a modular-form part $g$ (independent of $w$) and a combinatorial part $S_w^n$ (depends on $w$), and reduce the conjecture to the **sign of one integral** $\int g\,D_{\phi,w}^n\,dt$.
+3. Try to prove that sign with a **Chebyshev-type comparison lemma**.
+4. Check the lemma's hypotheses on $g$ (via Ramanujan's derivative formulas) and on $D_{\phi,w}^n$.
 
-This function is real-valued and symmetric:
+### Step 1 — A finite-sum integral formula
 
-$$
-g_f(\pi-t)=g_f(t).
-$$
+Every real quadratic irrational has an $SL_2(\mathbb{Z})$-equivalent with a purely periodic continued fraction $w = \overline{[a_1,\dots,a_{2\ell}]}$, and $val_f$ is $SL_2(\mathbb{Z})$-invariant, so we may work with it. Put $T = \begin{pmatrix}1&1\\0&1\end{pmatrix}$, $V = \begin{pmatrix}1&0\\1&1\end{pmatrix}$ and
 
-Using the finite-sum formula for cycle integrals, we write
+$$B = T^{a_1}V^{a_2}\cdots T^{a_{2\ell-1}}V^{a_{2\ell}} = L_1L_2\cdots L_N, \quad L_j\in\{T,V\},\ N = a_1+\cdots+a_{2\ell}.$$
 
-$$
-\operatorname{Re}(\operatorname{val}_f(w))
-=
-\int_I g_f(t)\widehat{S}_w^{(n)}(t)\,dt,
-$$
+With $P_j = L_1\cdots L_j$ ($P_0 = I$), set $u_j = P_{j-1}^{-1}w$, $v_j = P_{j-1}^{-1}w'$ ($w'$ the conjugate of $w$) and
 
-where
+$$K_j(t) = \frac{e^{it}}{e^{it}-u_j} - \frac{e^{it}}{e^{it}-v_j}.$$
 
-$$
-\widehat{S}_w^{(n)}(t)
-=
-\frac{1}{2\log\epsilon_w}
-\operatorname{Re}
-\left(
-i\sum_{j=1}^{N}K_j(t)^{n+1}
-\right).
-$$
+Then, for a weakly holomorphic form $f$ of weight $-2n$,
 
-Here, the functions $K_j(t)$ are constructed from the continued fraction representation of the real quadratic irrationality $w$.
+$$val_f(w) = \frac{1}{2\log\epsilon_w}\int_{\pi/3}^{2\pi/3} f(e^{it})\, i\, e^{-nit}\sum_{j=1}^{N} K_j(t)^{n+1}\,dt.$$
 
-Since $g_f$ is symmetric, we can replace $\widehat{S}_w^{(n)}$ with its symmetrization
+This is the formula of Bengoechea–Herrero–Imamoğlu, which extends directly from weight $0$ to weight $-2n$, and it is what the SageMath code computes.
 
-$$
-S_w^{(n)}(t)
-=
-\frac{1}{2}
-\left(
-\widehat{S}_w^{(n)}(t)
-+
-\widehat{S}_w^{(n)}(\pi-t)
-\right)
-$$
+### Step 2 — Reduction to a sign problem
 
-without changing the integral.
+Let $I = [\frac{\pi}{3},\frac{2\pi}{3}]$ and $J = [\frac{\pi}{3},\frac{\pi}{2}]$. For **$n$ even** and $f$ with real Fourier coefficients (true for $E_4^2/\Delta$), define
 
-We then define the difference function
+$$g_f(t) = e^{-nit}f(e^{it}),$$
 
-$$
-D_{\phi,w}^{(n)}(t)
-=
-S_\phi^{(n)}(t)-S_w^{(n)}(t),
-$$
+which is real on $I$ and satisfies $g_f(\pi - t) = g_f(t)$. Define
 
-where $\phi=(1+\sqrt{5})/2$ is the golden ratio. This gives
+$$\widehat S_w^n(t) = \frac{1}{2\log\epsilon_w}\,\mathrm{Re}\!\Big(i\sum_{j=1}^{N}K_j(t)^{n+1}\Big), \qquad \mathrm{Re}(val_f(w)) = \int_I g_f(t)\,\widehat S_w^n(t)\,dt.$$
 
-$$
-\boxed{
-\begin{aligned}
-&\operatorname{Re}(\operatorname{val}_f(\phi))
--\operatorname{Re}(\operatorname{val}_f(w))\\
-&\qquad =
-\int_I g_f(t)D_{\phi,w}^{(n)}(t)\,dt.
-\end{aligned}
-}
-$$
+Since $g_f$ is symmetric about $\pi/2$, we may replace $\widehat S_w^n$ by its symmetrization
 
-Consequently, proving that
+$$S_w^n(t) = \tfrac12\big(\widehat S_w^n(t) + \widehat S_w^n(\pi - t)\big)$$
 
-$$
-\int_I g_f(t)D_{\phi,w}^{(n)}(t)\,dt\geq 0
-$$
+without changing the integral, so that $S_w^n(\pi - t) = S_w^n(t)$. With $D_{\phi,w}^n = S_\phi^n - S_w^n$ (here $n$ is a superscript, not an exponent),
 
-for every real quadratic irrationality $w$ would establish the conjectured upper bound.
+$$\boxed{\ \mathrm{Re}(val_f(\phi)) - \mathrm{Re}(val_f(w)) = \int_I g_f(t)\,D_{\phi,w}^n(t)\,dt\ }$$
+
+So the conjecture follows if this integral is $\ge 0$ for **every** real quadratic irrational $w$.
+
+### Step 3 — A comparison lemma
+
+> **Lemma (Chebyshev-type).** Let $g, D: I\to\mathbb{R}$ be continuous with $g(\pi-t) = g(t)$ and $D(\pi-t) = D(t)$. If $g$ is nondecreasing and $D$ is nonincreasing on $J$, and $\int_I D\,dt = 0$, then $\int_I g\,D\,dt \le 0$.
+
+For our weight-$(-4)$ form, $g\le 0$ is *nonincreasing* on $J$ (see Step 4), so $-g$ is nonnegative and nondecreasing on $J$; applying the lemma to $-g$ gives $\int_I g\,D\,dt \ge 0$, which is the direction we need. (On the poster this is described as "slightly changing the lemma".)
+
+**Where the lemma breaks.** For $n = 0$ and $f = 1$ we have $val_1(w) = 1$ for all $w$, hence $\int_I S_w^0\,dt = 1$ and $\int_I D_{\phi,w}^0\,dt = 0$, which is exactly the mean-zero hypothesis. For $n\ne 0$ there is no such identity, and $\int_I D_{\phi,w}^n\,dt = 0$ **does not hold in general**. So the lemma cannot be applied to $D_{\phi,w}^2$ as it stands, and a variant is needed.
+
+### Step 4 — The function $g$ for $f = E_4^2/\Delta$
+
+For $n = 2$,
+
+$$g(t) = e^{-2it}\,\frac{E_4(e^{it})^2}{\Delta(e^{it})}.$$
+
+* **Real and symmetric:** $g$ is real on $I$ and $g(\pi - t) = g(t)$.
+* **Nonpositive (numerical):** the numerical plot (Figure 1 in the report) strongly suggests $g\le 0$ on $I$, vanishing at the endpoints (where $E_4(e^{it}) = 0$) and attaining its minimum at $t = \pi/2$.
+* **Monotonicity via Ramanujan's formulas.** Using
+  $$\frac{1}{2\pi i}\frac{dE_4}{d\tau} = \frac{E_2E_4 - E_6}{3}, \qquad \frac{1}{2\pi i}\frac{d\Delta}{d\tau} = E_2\Delta,$$
+  one gets $\frac{f'}{f}(\tau) = -\frac{2\pi i}{3}\Big(E_2 + 2\frac{E_6}{E_4}\Big)(\tau)$ and therefore, for $\frac{\pi}{3} < t < \frac{2\pi}{3}$,
+  $$\frac{g'(t)}{g(t)} = -2i + \frac{2\pi}{3}\,e^{it}\Big(E_2(e^{it}) + 2\frac{E_6(e^{it})}{E_4(e^{it})}\Big).$$
+  Since $g$ is real, the left side is real, so we may take real parts. If $g<0$ in the interior of $I$, then $g'\le 0$ on $(\frac{\pi}{3},\frac{\pi}{2})$ as soon as
+  $$\mathrm{Re}\!\Big(e^{it}\Big[E_2(e^{it}) + 2\frac{E_6(e^{it})}{E_4(e^{it})}\Big]\Big)\ \ge\ 0 \quad\text{for } \tfrac{\pi}{3} < t < \tfrac{\pi}{2}. \tag{$\ast$}$$
+
+### Where things stand
+
+| Ingredient | Needed for | Status |
+|---|---|---|
+| $g$ real on $I$, $g(\pi-t) = g(t)$ | symmetrization, lemma | ✅ shown in the report ($n$ even, real coefficients) |
+| $D_{\phi,w}^n(\pi-t) = D_{\phi,w}^n(t)$ | lemma | ✅ by construction of $S_w^n$ |
+| $g\le 0$ on $I$ | sign / direction of the bound | ⚠️ numerical evidence only |
+| $g$ nonincreasing on $J$ | lemma | ⚠️ reduced to inequality $(\ast)$, which is unproven |
+| $D_{\phi,w}^2$ nonincreasing on $J$ | lemma | ❓ not examined in the report |
+| $\int_I D_{\phi,w}^2\,dt = 0$ | lemma | ❌ false in general for $n\ne 0$ |
+
+### Open questions
+
+1. What techniques give a rigorous proof that $g\le 0$ on $I$ and that $g$ is nonincreasing on $J$, for instance by proving $(\ast)$?
+2. Since $\int_I D_{\phi,w}^n\,dt = 0$ fails for $n\neq 0$, which conditions on $D_{\phi,w}^2$ can replace the mean-zero hypothesis in the comparison lemma?
+3. How can the conjecture be refined for odd $n$ (where the symmetrization trick is not available)?
+4. Does this method work for other modular forms of weight $-2n$ with $n$ even?
 
 ## 🛠 Project Structure
 ```text
@@ -148,4 +151,10 @@ Bounds_of_Cycle_Integrals_of_Modular_forms/
 ├── .gitignore
 ├── LICENSE
 └── README.md
-```
+``` 
+
+## 📚 References
+
+1. P. Bengoechea, S. Herrero, Ö. İmamoğlu. *A Lyapunov exponent attached to modular functions.* 2025. [arXiv:2503.16343](https://arxiv.org/abs/2503.16343).
+2. P. Bengoechea, S. Herrero, Ö. İmamoğlu. *Real part of cycle integrals and conjectures of Kaneko.* 2025. [arXiv:2505.14500](https://arxiv.org/abs/2505.14500).
+3. M. Kaneko. *Observations on the "values" of the elliptic modular function $j(\tau)$ at real quadratics.* Kyushu J. Math. 63(2) (2009), 353–364.
