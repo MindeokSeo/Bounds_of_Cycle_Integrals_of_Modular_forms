@@ -8,11 +8,11 @@ This project was conducted as part of the **[UW–Madison Experimental Mathemati
 
 In 2009, Masanobu Kaneko introduced a method to evaluate the Klein $j$-invariant at real quadratic irrationalities $w$ using normalized hyperbolic cycle integrals:
 
-$$\operatorname{val}_j(w) = \frac{1}{2 \log \epsilon_w} \int_{\tau}^{A\tau} \frac{j(z) \sqrt{D}}{Q(z, 1)} \, dz$$
+$$\mathrm{val}_j(w) = \frac{1}{2 \log \epsilon_w} \int_{\tau}^{A\tau} \frac{j(z) \sqrt{D}}{Q(z, 1)} \, dz$$
 
 Kaneko conjectured—and Bengoechea, Herrero, and Imamoğlu recently proved—that for all real quadratic irrationals $w$, the real part is bounded below by its value at the golden ratio $\phi = \frac{1+\sqrt{5}}{2}$:
 
-$$\operatorname{Re}\big(\operatorname{val}_j(w)\big) \ge \operatorname{Re}\big(\operatorname{val}_j(\phi)\big)$$
+$$\mathrm{Re}\big(\mathrm{val}_j(w)\big) \ge \mathrm{Re}\big(\mathrm{val}_j(\phi)\big)$$
 
 ### Core Research Question
 Can Kaneko's lower bound be generalized to other weakly holomorphic modular forms of negative weight $-2n$? Specifically, what happens when we replace $j(\tau)$ with forms such as $f = \frac{E_4^2}{\Delta}$ (weight $-4$) or $f = \frac{E_4 E_6}{\Delta}$ (weight $-2$)?
@@ -21,7 +21,7 @@ Can Kaneko's lower bound be generalized to other weakly holomorphic modular form
 ## 🔬 Key Experimental Findings
 
 1. **Weight $-2$ ($f = \frac{E_4 E_6}{\Delta}$):**
-   - $\operatorname{Re}(\operatorname{val}_f(\phi)) = 0$ and $\operatorname{Re}(\operatorname{val}_f(\overline{[2,2]})) = 0$ (proved theoretically; numerical artifacts yield $\approx 10^{-14}$).
+   - $\mathrm{Re}(\mathrm{val}_f(\phi)) = 0$ and $\mathrm{Re}(\mathrm{val}_f(\overline{[2,2]})) = 0$ (proved theoretically; numerical artifacts yield $\approx 10^{-14}$).
    - Other values yield both positive and negative results (e.g., $\overline{[1,2]} \mapsto -26.26$, $\overline{[4,1]} \mapsto 34.72$).
    - **Conclusion:** No global minimum or maximum exists for weight $-2$.
 
@@ -41,7 +41,7 @@ Can Kaneko's lower bound be generalized to other weakly holomorphic modular form
 
 **Conjecture 4.1.** For $f = E_4^2/\Delta$ (weight $-4$, so $n = 2$) and every real quadratic irrational $w$,
 
-$$\operatorname{Re}\big(\operatorname{val}_f(w)\big) \le \operatorname{Re}\big(\operatorname{val}_f(\phi)\big) = 99.92938911748521\ldots$$
+$$\mathrm{Re}\big(\mathrm{val}_f(w)\big) \le \mathrm{Re}\big(\mathrm{val}_f(\phi)\big) = 99.92938911748521\ldots$$
 
 **Normalization.** All numerical values use
 
@@ -53,14 +53,14 @@ $$E_{2k}(\tau) = \frac{1}{2\zeta(2k)}\sum_{(m,n)\in\mathbb{Z}^2\setminus\{(0,0)\
 
 ### Strategy at a glance
 
-1. Rewrite $\operatorname{val}_f(w)$ as an integral over the arc $e^{it}$, $\frac{\pi}{3}\le t\le\frac{2\pi}{3}$, against an explicit finite sum built from the continued fraction of $w$.
+1. Rewrite $\mathrm{val}_f(w)$ as an integral over the arc $e^{it}$, $\frac{\pi}{3}\le t\le\frac{2\pi}{3}$, against an explicit finite sum built from the continued fraction of $w$.
 2. For even $n$, split the integrand into a modular-form part $g$ (independent of $w$) and a combinatorial part $S_w^n$ (depends on $w$), and reduce the conjecture to the **sign of one integral** $\int g\,D_{\phi,w}^n\,dt$.
 3. Try to prove that sign with a **Chebyshev-type comparison lemma**.
 4. Check the lemma's hypotheses on $g$ (via Ramanujan's derivative formulas) and on $D_{\phi,w}^n$.
 
 ### Step 1 — A finite-sum integral formula
 
-Every real quadratic irrational has an $SL_2(\mathbb{Z})$-equivalent with a purely periodic continued fraction $w = \overline{[a_1,\dots,a_{2\ell}]}$, and $\operatorname{val}_f$ is $SL_2(\mathbb{Z})$-invariant, so we may work with it. Put
+Every real quadratic irrational has an $SL_2(\mathbb{Z})$-equivalent with a purely periodic continued fraction $w = \overline{[a_1,\dots,a_{2\ell}]}$, and $\mathrm{val}_f$ is $SL_2(\mathbb{Z})$-invariant, so we may work with it. Put
 
 $$T = \begin{pmatrix}1&1\\0&1\end{pmatrix}, \qquad V = \begin{pmatrix}1&0\\1&1\end{pmatrix},$$
 
@@ -74,7 +74,7 @@ $$K_j(t) = \frac{e^{it}}{e^{it}-u_j} - \frac{e^{it}}{e^{it}-v_j}.$$
 
 Then, for a weakly holomorphic form $f$ of weight $-2n$,
 
-$$\operatorname{val}_f(w) = \frac{1}{2\log\epsilon_w}\int_{\pi/3}^{2\pi/3} f(e^{it})\, i\, e^{-nit}\sum_{j=1}^{N} K_j(t)^{n+1}\,dt.$$
+$$\mathrm{val}_f(w) = \frac{1}{2\log\epsilon_w}\int_{\pi/3}^{2\pi/3} f(e^{it})\, i\, e^{-nit}\sum_{j=1}^{N} K_j(t)^{n+1}\,dt.$$
 
 This is the formula of Bengoechea–Herrero–Imamoğlu, which extends directly from weight $0$ to weight $-2n$, and it is what the SageMath code computes.
 
@@ -86,11 +86,11 @@ $$g_f(t) = e^{-nit}f(e^{it}),$$
 
 which is real on $I$ and satisfies $g_f(\pi - t) = g_f(t)$. Define
 
-$$\widehat{S}_w^n(t) = \frac{1}{2\log\epsilon_w}\operatorname{Re}\Big(i\sum_{j=1}^{N}K_j(t)^{n+1}\Big),$$
+$$\widehat{S}_w^n(t) = \frac{1}{2\log\epsilon_w}\mathrm{Re}\Big(i\sum_{j=1}^{N}K_j(t)^{n+1}\Big),$$
 
 so that
 
-$$\operatorname{Re}\big(\operatorname{val}_f(w)\big) = \int_I g_f(t)\,\widehat{S}_w^n(t)\,dt.$$
+$$\mathrm{Re}\big(\mathrm{val}_f(w)\big) = \int_I g_f(t)\,\widehat{S}_w^n(t)\,dt.$$
 
 Since $g_f$ is symmetric about $\pi/2$, we may replace $\widehat{S}_w^n$ by its symmetrization
 
@@ -98,13 +98,13 @@ $$S_w^n(t) = \frac{1}{2}\Big(\widehat{S}_w^n(t) + \widehat{S}_w^n(\pi - t)\Big)$
 
 without changing the integral, so that $S_w^n(\pi - t) = S_w^n(t)$. With $D_{\phi,w}^n = S_\phi^n - S_w^n$ (here $n$ is a superscript, not an exponent),
 
-$$\operatorname{Re}\big(\operatorname{val}_f(\phi)\big) - \operatorname{Re}\big(\operatorname{val}_f(w)\big) = \int_I g_f(t)\,D_{\phi,w}^n(t)\,dt.$$
+$$\mathrm{Re}\big(\mathrm{val}_f(\phi)\big) - \mathrm{Re}\big(\mathrm{val}_f(w)\big) = \int_I g_f(t)\,D_{\phi,w}^n(t)\,dt.$$
 
 So the conjecture follows if this integral is $\ge 0$ for **every** real quadratic irrational $w$.
 
 ### Step 3 — A comparison lemma
 
-The classical Chebyshev-type argument needs the mean-zero hypothesis $\int_I D\,dt = 0$. This holds for $n = 0$ (because $\operatorname{val}_1(w) = 1$ for every $w$) but is not available for $n\ne 0$ (final report, Sec. 5.2), so the original lemma cannot be applied to $D_{\phi,w}^2$ directly. For our case the poster uses the following variant instead:
+The classical Chebyshev-type argument needs the mean-zero hypothesis $\int_I D\,dt = 0$. This holds for $n = 0$ (because $\mathrm{val}_1(w) = 1$ for every $w$) but is not available for $n\ne 0$ (final report, Sec. 5.2), so the original lemma cannot be applied to $D_{\phi,w}^2$ directly. For our case the poster uses the following variant instead:
 
 > **Variant (final poster).** If $g$ and $D$ are both nonpositive and decreasing on $J = [\frac{\pi}{3},\frac{\pi}{2}]$ (and symmetric about $\frac{\pi}{2}$), then $\int_I g\,D\,dt \ge 0$.
 
@@ -134,7 +134,7 @@ $$\frac{g'(t)}{g(t)} = -2i + \frac{2\pi}{3}\,e^{it}\left(E_2(e^{it}) + 2\,\frac{
 
 Since $g$ is real, the left side is real, so we may take real parts. If $g<0$ in the interior of $I$, then $g'\le 0$ on $(\frac{\pi}{3},\frac{\pi}{2})$ as soon as
 
-$$\operatorname{Re}\left(e^{it}\left[E_2(e^{it}) + 2\,\frac{E_6(e^{it})}{E_4(e^{it})}\right]\right) \ge 0 \quad \text{for } \tfrac{\pi}{3} < t < \tfrac{\pi}{2}. \qquad (\ast)$$
+$$\mathrm{Re}\left(e^{it}\left[E_2(e^{it}) + 2\,\frac{E_6(e^{it})}{E_4(e^{it})}\right]\right) \ge 0 \quad \text{for } \tfrac{\pi}{3} < t < \tfrac{\pi}{2}. \qquad (\ast)$$
 
 ### Where things stand
 
