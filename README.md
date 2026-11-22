@@ -108,11 +108,12 @@ where $\phi=(1+\sqrt{5})/2$ is the golden ratio. This gives
 
 $$
 \boxed{
-\operatorname{Re}(\operatorname{val}_f(\phi))
--
-\operatorname{Re}(\operatorname{val}_f(w))
-=
+\begin{aligned}
+&\operatorname{Re}(\operatorname{val}_f(\phi))
+-\operatorname{Re}(\operatorname{val}_f(w))\\
+&\qquad =
 \int_I g_f(t)D_{\phi,w}^{(n)}(t)\,dt.
+\end{aligned}
 }
 $$
 
@@ -123,146 +124,6 @@ $$
 $$
 
 for every real quadratic irrationality $w$ would establish the conjectured upper bound.
-
-### 2. Investigating the Sign and Monotonicity of $g_f$
-
-For our weight $-4$ example, $n=2$, so
-
-$$
-g(t)
-=
-e^{-2it}
-\frac{E_4(e^{it})^2}{\Delta(e^{it})}.
-$$
-
-Numerical plots suggest that:
-
-- $g(t)$ is nonpositive on $I$ and vanishes at the endpoints.
-- $g(t)$ is symmetric about $t=\pi/2$.
-- $g(t)$ is nonincreasing on $J=[\pi/3,\pi/2]$.
-
-To investigate these properties analytically, we used Ramanujan's differential identities for Eisenstein series:
-
-$$
-\frac{1}{2\pi i}\frac{dE_4}{d\tau}
-=
-\frac{E_2E_4-E_6}{3},
-\qquad
-\frac{1}{2\pi i}\frac{d\Delta}{d\tau}
-=
-E_2\Delta.
-$$
-
-Differentiating $g(t)$ gives
-
-$$
-\frac{g'(t)}{g(t)}
-=
--2i+
-\frac{2\pi}{3}e^{it}
-\left(
-E_2(e^{it})
-+
-2\frac{E_6(e^{it})}{E_4(e^{it})}
-\right).
-$$
-
-Since $g(t)$ is real, taking real parts yields
-
-$$
-\frac{g'(t)}{g(t)}
-=
-\frac{2\pi}{3}
-\operatorname{Re}
-\left[
-e^{it}
-\left(
-E_2(e^{it})
-+
-2\frac{E_6(e^{it})}{E_4(e^{it})}
-\right)
-\right].
-$$
-
-Assuming $g(t)<0$ in the interior of $I$, it would therefore be sufficient to establish
-
-$$
-\operatorname{Re}
-\left[
-e^{it}
-\left(
-E_2(e^{it})
-+
-2\frac{E_6(e^{it})}{E_4(e^{it})}
-\right)
-\right]
-\geq 0
-$$
-
-for $\pi/3<t<\pi/2$ in order to show that $g$ is nonincreasing on $J$.
-
-The numerical graph supports these properties, but the required inequalities were not proved.
-
-### 3. Exploring an Integral Comparison Lemma
-
-We also investigated whether a comparison principle could establish the desired sign of the integral.
-
-We considered the following form of Chebyshev's integral inequality. Suppose that two continuous functions $g,D:I\to\mathbb{R}$ satisfy
-
-$$
-g(\pi-t)=g(t),
-\qquad
-D(\pi-t)=D(t),
-$$
-
-and that $g$ is nondecreasing while $D$ is nonincreasing on $J$. If
-
-$$
-\int_I D(t)\,dt=0,
-$$
-
-then
-
-$$
-\int_I g(t)D(t)\,dt\leq 0.
-$$
-
-However, this lemma cannot be applied directly to our weight $-4$ case.
-
-Indeed, when $n=0$, applying the cycle-integral formula to the constant function $f=1$ gives
-
-$$
-\operatorname{val}_1(w)=1.
-$$
-
-This implies
-
-$$
-\int_I S_w^{(0)}(t)\,dt=1
-$$
-
-for every $w$, and consequently
-
-$$
-\int_I D_{\phi,w}^{(0)}(t)\,dt=0.
-$$
-
-For $n\neq 0$, this mean-zero identity does not generally hold. Thus, the comparison lemma's hypothesis fails for $D_{\phi,w}^{(2)}$.
-
-As an alternative, we explored a sign-based approach, suggested in our final poster: if both $g(t)$ and $D_{\phi,w}^{(2)}(t)$ could be shown to be nonpositive on $J$, their symmetry would yield a nonnegative integrand on $I$. However, establishing the required sign of $D_{\phi,w}^{(2)}$ for arbitrary $w$ remains an open step in this approach.
-
-### 4. Remaining Challenges
-
-Our analytical investigation reduced the conjecture to a sign problem involving two functions, $g(t)$ and $D_{\phi,w}^{(2)}(t)$. However, several questions remain unresolved:
-
-1. **Proving the properties of $g$:** Establish rigorously that $g(t)\leq 0$ on $I$ and that it is nonincreasing on $J$, potentially by proving the inequality derived from Ramanujan's differential identities.
-
-2. **Controlling the difference function:** Find suitable conditions on $D_{\phi,w}^{(2)}(t)$ that guarantee the desired sign of the integral, despite the failure of the mean-zero condition.
-
-3. **Extending the method:** Investigate whether this analytical framework can be adapted to modular forms of other negative even weights and whether a refined version can handle odd $n$.
-
-Our work provides a numerical conjecture and an analytical reduction toward its proof, but does not establish the conjectured upper bound.
-
 
 ## 🛠 Project Structure
 ```text
