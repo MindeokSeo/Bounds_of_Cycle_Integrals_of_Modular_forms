@@ -174,18 +174,6 @@ Since $`g`$ is real, the left side is real, so we may take real parts. If $`g<0`
 \mathrm{Re}\left(e^{it}\left[E_2(e^{it}) + 2\,\frac{E_6(e^{it})}{E_4(e^{it})}\right]\right) \ge 0 \quad \text{for } \frac{\pi}{3} < t < \frac{\pi}{2}. \qquad (\ast)
 ```
 
-### Where things stand
-
-The reduction in Step 2 is exact. Applying the poster's variant to $`g`$ and $`D_{\phi,w}^2`$ requires the following:
-
-| Ingredient | Status |
-|---|---|
-| $`g`$ real on $`I`$ and $`g(\pi-t) = g(t)`$ | shown in the report ($`n`$ even, real coefficients) |
-| $`D_{\phi,w}^2(\pi-t) = D_{\phi,w}^2(t)`$ | by construction of $`S_w^n`$ |
-| $`g\le 0`$ on $`I`$ | numerical evidence only (Figure 1) |
-| $`g`$ nonincreasing on $`J`$ | reduced to inequality $`(\ast)`$, which is unproven |
-| $`D_{\phi,w}^2`$ nonpositive and nonincreasing on $`J`$ | not written up in the report |
-
 ### Open questions
 
 1. What techniques give a rigorous proof that $`g\le 0`$ on $`I`$ and that $`g`$ is nonincreasing on $`J`$, for instance by proving $`(\ast)`$?
